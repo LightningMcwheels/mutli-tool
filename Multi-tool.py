@@ -2,16 +2,14 @@ import time
 
 username_default = "admin"
 password_default = "supersecretpassword"
-application1 = "Calculator" or "calculator"
-application2 = "Sleep Calculator" or "sleep calculator"
+application1 = "calculator"
+application2 = "sleep calculator"
+application3 = "guessing game"
 
 def timeout():
   print("You have been timed out for 20 seconds for putting the wrong username/password 3 times.")
   time.sleep(20)
   login()
-
-def example_function(username):
-  print(f"hi {username}")
 
 def login():
   login_attempts = 0
@@ -20,8 +18,8 @@ def login():
     if login_attempts >= 3:
       timeout()
     
-    username_entry = input('What is the username?')  
-    password_entry = input('What is the password?')
+    username_entry = input('What is the username? ')  
+    password_entry = input('What is the password? ')
   
     if username_entry != username_default:
       print("Incorrect Username or Password")
@@ -33,8 +31,7 @@ def login():
       login_attempts = login_attempts + 1
 
     else:
-      print("Welcome!")
-      example_function(username_entry)
+      print(f"\nWelcome! {username_entry}\n")
       break
 
 def calculator():
@@ -105,13 +102,21 @@ def guessing_game():
 # The select appication not working 
 def Select_application():
   print("What appliaction would u like\n""Calculator\n""Sleep Calculator\n""Guessing Game\n")
-  input("Please enter the application")
-  while input != application1:
+
+  choice = input("Please enter the application: \n").lower()
+  if choice == application1:
     calculator()
-  if input != application2:
+
+  if choice == application2:
     sleep()
-  else:
+
+  if choice == application3:
     guessing_game()
+
+  else:
+    print("\nPlease enter a valid application\n")
+    Select_application()
+
 # This will be the only thing that runs when the code first starts
 login()
 Select_application()
